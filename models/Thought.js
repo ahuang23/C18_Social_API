@@ -15,7 +15,7 @@ const thoughtSchema = new Schema (
             type: Date,
             default: Date.now,
 // format date using moment
-            get: (date) => moment(date).format('LL')
+            get: (date) => moment(date).format('LL'),
         },
         username: {
             type: String,
@@ -41,22 +41,22 @@ const reactionSchema = new Schema (
     {
        reactionId: {
             type: Schema.Types.ObjectId,
-            default: new ObjectId()
+            default: () => new Types.ObjectId(),
        },
        reactionBody: {
             type: String,
             required: true,
-            maxLength: 280
+            maxLength: 280,
        },
        username: {
             type: String,
-            required: true
+            required: true,
        },
        createdAt: {
             type: Date,
             default: Date.now,
-            // format date using moment
-            get: (date) => moment(date).format('LL')
+// format date using moment
+            get: (date) => moment(date).format('LL'),
        }
     }
 )
