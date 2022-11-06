@@ -3,6 +3,31 @@ const moment = require('moment');
 const { ObjectId } = require('bson');
 moment.locale();
 
+const reactionSchema = new Schema (
+    {
+       reactionId: {
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId(),
+       },
+       reactionBody: {
+            type: String,
+            required: true,
+            maxLength: 280,
+       },
+       username: {
+            type: String,
+            required: true,
+       },
+       createdAt: {
+            type: Date,
+            default: Date.now,
+// format date using moment
+            get: (date) => moment(date).format('LL'),
+       }
+    }
+);
+
+
 const thoughtSchema = new Schema (
     {
         thoughtText: {
@@ -37,29 +62,6 @@ thoughtSchema.virtual('reactionCount').get(function(){
     return this.reactions.length;
 });
 
-const reactionSchema = new Schema (
-    {
-       reactionId: {
-            type: Schema.Types.ObjectId,
-            default: () => new Types.ObjectId(),
-       },
-       reactionBody: {
-            type: String,
-            required: true,
-            maxLength: 280,
-       },
-       username: {
-            type: String,
-            required: true,
-       },
-       createdAt: {
-            type: Date,
-            default: Date.now,
-// format date using moment
-            get: (date) => moment(date).format('LL'),
-       }
-    }
-)
 
 const Thought = model('thought', thoughtSchema);
 
