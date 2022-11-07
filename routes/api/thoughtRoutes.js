@@ -16,7 +16,10 @@ router.route('/').get(getAllThoughts).post(addThoughts);
 // get / delete /update thoughts by ID
 router.route('/:thoughtId').get(getThoughtsById).delete(deleteThoughts).put(updateThoughts);
 
-// add / delete reactions
-router.route('/:thoughtID/reactions').post(addReactions).delete(deleteReactions);
+// add reaction
+router.route('/:thoughtId/reactions').post(addReactions);
+
+// delete reaction
+router.route('/:thoughtId/reactions/:reactionId').delete(deleteReactions);
 
 module.exports = router;
