@@ -1,7 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model, Types } = require('mongoose');
 const moment = require('moment');
 const { ObjectId } = require('bson');
-moment.locale();
 
 const reactionSchema = new Schema (
     {
@@ -22,7 +21,7 @@ const reactionSchema = new Schema (
             type: Date,
             default: Date.now,
 // format date using moment
-            get: (date) => moment(date).format('LL'),
+            get: (date) => moment(date).format('MMM DD, YYYY'),
        }
     }
 );
@@ -40,7 +39,7 @@ const thoughtSchema = new Schema (
             type: Date,
             default: Date.now,
 // format date using moment
-            get: (date) => moment(date).format('LL'),
+            get: (date) => moment(date).format('MMM DD, YYYY'),
         },
         username: {
             type: String,

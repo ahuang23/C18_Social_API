@@ -13,7 +13,7 @@ const {
 // get / add all thoughts
 router.route('/').get(getAllThoughts).post(addThoughts);
 
-// get / delete /update thoughts by ID
+// get / delete / update thoughts by ID
 router.route('/:thoughtId').get(getThoughtsById).delete(deleteThoughts).put(updateThoughts);
 
 // add reaction
